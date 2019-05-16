@@ -1,0 +1,184 @@
+<xqdoc:xqdoc xmlns:xqdoc="http://www.xqdoc.org/1.0">
+    <xqdoc:control>
+        <xqdoc:date>2019-05-14T12:08:24.519-04:00</xqdoc:date>
+        <xqdoc:location>java:org.exist.xquery.functions.array.ArrayModule</xqdoc:location>
+    </xqdoc:control>
+    <xqdoc:module type="library">
+        <xqdoc:uri>http://www.w3.org/2005/xpath-functions/array</xqdoc:uri>
+        <xqdoc:name>array</xqdoc:name>
+        <xqdoc:comment>
+            <xqdoc:description>Functions that operate on arrays</xqdoc:description>
+        </xqdoc:comment>
+    </xqdoc:module>
+    <xqdoc:functions>
+        <xqdoc:function>
+            <xqdoc:name>array:size</xqdoc:name>
+            <xqdoc:signature>array:size($array as array(*)) as xs:integer</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description>Returns the number of members in the supplied array.</xqdoc:description>
+                <xqdoc:param>$array The array</xqdoc:param>
+                <xqdoc:return>xs:integer : The number of members in the supplied array</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+        <xqdoc:function>
+            <xqdoc:name>array:get</xqdoc:name>
+            <xqdoc:signature>array:get($array as array(*), $index as xs:integer) as item()*</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description>Gets the value at the specified position in the supplied array (counting from 1). This is the same as calling $array($index).</xqdoc:description>
+                <xqdoc:param>$array The array</xqdoc:param>
+                <xqdoc:param>$index The index</xqdoc:param>
+                <xqdoc:return>item()* : The value at $index</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+        <xqdoc:function>
+            <xqdoc:name>array:append</xqdoc:name>
+            <xqdoc:signature>array:append($array as array(*), $appendage as item()*) as array(*)</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description>Returns an array containing all the members of the supplied array, plus one additionalmember at the end.</xqdoc:description>
+                <xqdoc:param>$array The array</xqdoc:param>
+                <xqdoc:param>$appendage* The items to append</xqdoc:param>
+                <xqdoc:return>array(*) : A copy of $array with the new member attached</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+        <xqdoc:function>
+            <xqdoc:name>array:head</xqdoc:name>
+            <xqdoc:signature>array:head($array as array(*)) as item()*</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description>Returns the first member of an array, i.e. $array(1)</xqdoc:description>
+                <xqdoc:param>$array The array</xqdoc:param>
+                <xqdoc:return>item()* : The first member of the array</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+        <xqdoc:function>
+            <xqdoc:name>array:tail</xqdoc:name>
+            <xqdoc:signature>array:tail($array as array(*)) as array(*)</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description>Returns an array containing all members except the first from a supplied array.</xqdoc:description>
+                <xqdoc:param>$array The array</xqdoc:param>
+                <xqdoc:return>array(*) : A new array containing all members except the first</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+        <xqdoc:function>
+            <xqdoc:name>array:subarray</xqdoc:name>
+            <xqdoc:signature>array:subarray($array as array(*), $start as xs:integer) as array(*)</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description>Gets an array containing all members from a supplied array starting at a supplied position, up to the end of the array</xqdoc:description>
+                <xqdoc:param>$array The array</xqdoc:param>
+                <xqdoc:param>$start The start index</xqdoc:param>
+                <xqdoc:return>array(*) : A new array containing all members from $start</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+        <xqdoc:function>
+            <xqdoc:name>array:subarray</xqdoc:name>
+            <xqdoc:signature>array:subarray($array as array(*), $start as xs:integer, $length as xs:integer) as array(*)</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description>Gets an array containing all members from a supplied array starting at a supplied position, up to a specified length.</xqdoc:description>
+                <xqdoc:param>$array The array</xqdoc:param>
+                <xqdoc:param>$start The start index</xqdoc:param>
+                <xqdoc:param>$length Length of the subarray</xqdoc:param>
+                <xqdoc:return>array(*) : A new array containing all members from $start up to the specified length</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+        <xqdoc:function>
+            <xqdoc:name>array:remove</xqdoc:name>
+            <xqdoc:signature>array:remove($array as array(*), $positions as xs:integer*) as array(*)</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description>Returns an array containing all the members of the supplied array, except for the members at specified positions.</xqdoc:description>
+                <xqdoc:param>$array The array</xqdoc:param>
+                <xqdoc:param>$positions* Positions of the members to remove</xqdoc:param>
+                <xqdoc:return>array(*) : A new array containing all members from $array except the members whose position (counting from 1) is present in the sequence $positions</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+        <xqdoc:function>
+            <xqdoc:name>array:insert-before</xqdoc:name>
+            <xqdoc:signature>array:insert-before($array as array(*), $position as xs:integer, $member as item()*) as array(*)</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description>Returns an array containing all the members of the supplied array, with one additional member at a specified position.</xqdoc:description>
+                <xqdoc:param>$array The array</xqdoc:param>
+                <xqdoc:param>$position Position at which the new member is inserted</xqdoc:param>
+                <xqdoc:param>$member* The member to insert</xqdoc:param>
+                <xqdoc:return>array(*) : A new array containing all members plus the new member</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+        <xqdoc:function>
+            <xqdoc:name>array:reverse</xqdoc:name>
+            <xqdoc:signature>array:reverse($array as array(*)) as array(*)</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description>Returns an array containing all the members of the supplied array, but in reverse order.</xqdoc:description>
+                <xqdoc:param>$array The array</xqdoc:param>
+                <xqdoc:return>array(*) : The array in reverse order</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+        <xqdoc:function>
+            <xqdoc:name>array:join</xqdoc:name>
+            <xqdoc:signature>array:join($arrays as array(*)*) as array(*)</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description>Concatenates the contents of several arrays into a single array</xqdoc:description>
+                <xqdoc:param>$arrays* The arrays to join</xqdoc:param>
+                <xqdoc:return>array(*) : The resulting array</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+        <xqdoc:function>
+            <xqdoc:name>array:for-each</xqdoc:name>
+            <xqdoc:signature>array:for-each($array as array(*), $function as function(*)) as array(*)</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description>Returns an array whose size is the same as array:size($array), in which each member is computed by applying $function to the corresponding member of $array.</xqdoc:description>
+                <xqdoc:param>$array The array to process</xqdoc:param>
+                <xqdoc:param>$function The function called on each member of the array</xqdoc:param>
+                <xqdoc:return>array(*) : The resulting array</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+        <xqdoc:function>
+            <xqdoc:name>array:filter</xqdoc:name>
+            <xqdoc:signature>array:filter($array as array(*), $function as function(*)) as array(*)</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description>Returns an array containing those members of the $array for which $function returns true.</xqdoc:description>
+                <xqdoc:param>$array The array to process</xqdoc:param>
+                <xqdoc:param>$function The function called on each member of the array</xqdoc:param>
+                <xqdoc:return>array(*) : The resulting array</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+        <xqdoc:function>
+            <xqdoc:name>array:fold-left</xqdoc:name>
+            <xqdoc:signature>array:fold-left($array as array(*), $zero as item()*, $function as function(*)) as item()*</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description>Evaluates the supplied function cumulatively on successive values of the supplied array.</xqdoc:description>
+                <xqdoc:param>$array The array to process</xqdoc:param>
+                <xqdoc:param>$zero* Start value</xqdoc:param>
+                <xqdoc:param>$function The function to call</xqdoc:param>
+                <xqdoc:return>item()* : The result of the cumulative function call</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+        <xqdoc:function>
+            <xqdoc:name>array:fold-right</xqdoc:name>
+            <xqdoc:signature>array:fold-right($array as array(*), $zero as item()*, $function as function(*)) as item()*</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description>Evaluates the supplied function cumulatively on successive values of the supplied array.</xqdoc:description>
+                <xqdoc:param>$array The array to process</xqdoc:param>
+                <xqdoc:param>$zero* Start value</xqdoc:param>
+                <xqdoc:param>$function The function to call</xqdoc:param>
+                <xqdoc:return>item()* : The result of the cumulative function call</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+        <xqdoc:function>
+            <xqdoc:name>array:for-each-pair</xqdoc:name>
+            <xqdoc:signature>array:for-each-pair($array1 as array(*), $array2 as array(*), $function as function(*)) as array(*)</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description>Returns an array obtained by evaluating the supplied function once for each pair of members at the same position in the two supplied arrays.</xqdoc:description>
+                <xqdoc:param>$array1 The first array to process</xqdoc:param>
+                <xqdoc:param>$array2 The second array to process</xqdoc:param>
+                <xqdoc:param>$function The function to call for each pair</xqdoc:param>
+                <xqdoc:return>array(*) : The resulting array</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+        <xqdoc:function>
+            <xqdoc:name>array:flatten</xqdoc:name>
+            <xqdoc:signature>array:flatten($input as item()*) as item()*</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description>Replaces an array appearing in a supplied sequence with the members of the array, recursively.</xqdoc:description>
+                <xqdoc:param>$input* The sequence to flatten</xqdoc:param>
+                <xqdoc:return>item()* : The resulting sequence</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+    </xqdoc:functions>
+</xqdoc:xqdoc>

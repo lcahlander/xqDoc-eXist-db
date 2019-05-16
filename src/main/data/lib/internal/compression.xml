@@ -1,0 +1,270 @@
+<xqdoc:xqdoc xmlns:xqdoc="http://www.xqdoc.org/1.0">
+    <xqdoc:control>
+        <xqdoc:date>2019-05-14T12:08:24.519-04:00</xqdoc:date>
+        <xqdoc:location>java:org.exist.xquery.modules.compression.CompressionModule</xqdoc:location>
+    </xqdoc:control>
+    <xqdoc:module type="library">
+        <xqdoc:uri>http://exist-db.org/xquery/compression</xqdoc:uri>
+        <xqdoc:name>compression</xqdoc:name>
+        <xqdoc:comment>
+            <xqdoc:description>A module for compression and decompression functions</xqdoc:description>
+        </xqdoc:comment>
+    </xqdoc:module>
+    <xqdoc:functions>
+        <xqdoc:function>
+            <xqdoc:name>compression:zip</xqdoc:name>
+            <xqdoc:signature>compression:zip($sources as xs:anyType+, $use-collection-hierarchy as xs:boolean) as xs:base64Binary*</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description>Zips nodes, resources and collections.</xqdoc:description>
+                <xqdoc:param>$sources+ The sequence of URI's and/or Entrys. If an URI points to a collection then the collection, its resources and sub-collections are zipped recursively. If URI points to file (available only to the DBA role.) then file or directory are zipped. An Entry takes the format &lt;entry name="filename.ext" type="collection|uri|binary|xml|text" method="deflate|store"&gt;data&lt;/entry&gt;. The method attribute is only effective for the compression:zip function.</xqdoc:param>
+                <xqdoc:param>$use-collection-hierarchy Indicates whether the Collection hierarchy (if any) should be preserved in the zip file.</xqdoc:param>
+                <xqdoc:return>xs:base64Binary*</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+        <xqdoc:function>
+            <xqdoc:name>compression:zip</xqdoc:name>
+            <xqdoc:signature>compression:zip($sources as xs:anyType+, $use-collection-hierarchy as xs:boolean, $strip-prefix as xs:string) as xs:base64Binary*</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description>Zips nodes, resources and collections.</xqdoc:description>
+                <xqdoc:param>$sources+ The sequence of URI's and/or Entrys. If an URI points to a collection then the collection, its resources and sub-collections are zipped recursively. If URI points to file (available only to the DBA role.) then file or directory are zipped. An Entry takes the format &lt;entry name="filename.ext" type="collection|uri|binary|xml|text" method="deflate|store"&gt;data&lt;/entry&gt;. The method attribute is only effective for the compression:zip function.</xqdoc:param>
+                <xqdoc:param>$use-collection-hierarchy Indicates whether the Collection hierarchy (if any) should be preserved in the zip file.</xqdoc:param>
+                <xqdoc:param>$strip-prefix This prefix is stripped from the Entrys name</xqdoc:param>
+                <xqdoc:return>xs:base64Binary*</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+        <xqdoc:function>
+            <xqdoc:name>compression:zip</xqdoc:name>
+            <xqdoc:signature>compression:zip($sources as xs:anyType+, $use-collection-hierarchy as xs:boolean, $strip-prefix as xs:string, $encoding as xs:string) as xs:base64Binary*</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description>Zips nodes, resources and collections.</xqdoc:description>
+                <xqdoc:param>$sources+ The sequence of URI's and/or Entrys. If an URI points to a collection then the collection, its resources and sub-collections are zipped recursively. If URI points to file (available only to the DBA role.) then file or directory are zipped. An Entry takes the format &lt;entry name="filename.ext" type="collection|uri|binary|xml|text" method="deflate|store"&gt;data&lt;/entry&gt;. The method attribute is only effective for the compression:zip function.</xqdoc:param>
+                <xqdoc:param>$use-collection-hierarchy Indicates whether the Collection hierarchy (if any) should be preserved in the zip file.</xqdoc:param>
+                <xqdoc:param>$strip-prefix This prefix is stripped from the Entrys name</xqdoc:param>
+                <xqdoc:param>$encoding This encoding to be used for filenames inside the compressed file</xqdoc:param>
+                <xqdoc:return>xs:base64Binary*</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+        <xqdoc:function>
+            <xqdoc:name>unzip</xqdoc:name>
+            <xqdoc:signature>unzip($zip-data as xs:base64Binary, $entry-filter as function(*), $entry-data as function(*)) as item()*</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description>UnZip all the resources/folders from the provided data by calling user defined functions to determine what and how to store the resources/folders</xqdoc:description>
+                <xqdoc:param>$zip-data The zip file data</xqdoc:param>
+                <xqdoc:param>$entry-filter A user defined function for filtering resources from the zip file. The function takes 2 parameters e.g. user:unzip-entry-filter($path as xs:string, $data-type as xs:string) as xs:boolean. $data-type may be 'resource' or 'folder'. If the return type is true() it indicates the entry should be processed and passed to the $entry-data function, else the resource is skipped. If you wish to extract all resources you can use the provided compression:no-filter#2 function.</xqdoc:param>
+                <xqdoc:param>$entry-data A user defined function for storing an extracted resource from the zip file. The function takes 3 parameters e.g. user:unzip-entry-data($path as xs:string, $data-type as xs:string, $data as item()?). Or a user defined function which returns a db path for storing an extracted resource from the zip file. The function takes 3 parameters e.g. user:entry-path($path as xs:string, $data-type as xs:string, $param as item()*) as xs:anyURI. $data-type may be 'resource' or 'folder'. Functions for storing the entries to a folder on the filesystem or a collection in the database provided by compression:fs-store-entry3($dest) and compression:db-store-entry3($dest).</xqdoc:param>
+                <xqdoc:return>item()*</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+        <xqdoc:function>
+            <xqdoc:name>unzip</xqdoc:name>
+            <xqdoc:signature>unzip($zip-data as xs:base64Binary, $entry-filter as function(*), $entry-filter-param as xs:anyType*, $entry-data as function(*), $entry-data-param as xs:anyType*) as item()*</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description>UnZip all the resources/folders from the provided data by calling user defined functions to determine what and how to store the resources/folders</xqdoc:description>
+                <xqdoc:param>$zip-data The zip file data</xqdoc:param>
+                <xqdoc:param>$entry-filter A user defined function for filtering resources from the zip file. The function takes 3 parameters e.g. user:unzip-entry-filter($path as xs:string, $data-type as xs:string, $param as item()*) as xs:boolean. $data-type may be 'resource' or 'folder'. $param is a sequence with any additional parameters, for example a list of extracted files. If the return type is true() it indicates the entry should be processed and passed to the $entry-data function, else the resource is skipped. If you wish to extract all resources you can use the provided compression:no-filter#3 function.</xqdoc:param>
+                <xqdoc:param>$entry-filter-param* A sequence with an additional parameters for filtering function.</xqdoc:param>
+                <xqdoc:param>$entry-data A user defined function for storing an extracted resource from the zip file. The function takes 4 parameters e.g. user:unzip-entry-data($path as xs:string, $data-type as xs:string, $data as item()?, $param as item()*). Or a user defined function which returns a db path for storing an extracted resource from the zip file. The function takes 3 parameters e.g. user:entry-path($path as xs:string, $data-type as xs:string, $param as item()*) as xs:anyURI. $data-type may be 'resource' or 'folder'. $param is a sequence with any additional parameters. Functions for storing the entries to a folder on the filesystem or a collection in the database provided by compression:fs-store-entry4($dest) and compression:db-store-entry4($dest).</xqdoc:param>
+                <xqdoc:param>$entry-data-param* A sequence with an additional parameters for storing function.</xqdoc:param>
+                <xqdoc:return>item()*</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+        <xqdoc:function>
+            <xqdoc:name>unzip</xqdoc:name>
+            <xqdoc:signature>unzip($zip-data as xs:base64Binary, $entry-filter as function(*), $entry-filter-param as xs:anyType*, $entry-data as function(*), $entry-data-param as xs:anyType*, $encoding as xs:string) as item()*</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description>UnZip all the resources/folders from the provided data by calling user defined functions to determine what and how to store the resources/folders</xqdoc:description>
+                <xqdoc:param>$zip-data The zip file data</xqdoc:param>
+                <xqdoc:param>$entry-filter A user defined function for filtering resources from the zip file. The function takes 3 parameters e.g. user:unzip-entry-filter($path as xs:string, $data-type as xs:string, $param as item()*) as xs:boolean. $data-type may be 'resource' or 'folder'. $param is a sequence with any additional parameters, for example a list of extracted files. If the return type is true() it indicates the entry should be processed and passed to the $entry-data function, else the resource is skipped. If you wish to extract all resources you can use the provided compression:no-filter#3 function.</xqdoc:param>
+                <xqdoc:param>$entry-filter-param* A sequence with an additional parameters for filtering function.</xqdoc:param>
+                <xqdoc:param>$entry-data A user defined function for storing an extracted resource from the zip file. The function takes 4 parameters e.g. user:unzip-entry-data($path as xs:string, $data-type as xs:string, $data as item()?, $param as item()*). Or a user defined function which returns a db path for storing an extracted resource from the zip file. The function takes 3 parameters e.g. user:entry-path($path as xs:string, $data-type as xs:string, $param as item()*) as xs:anyURI. $data-type may be 'resource' or 'folder'. $param is a sequence with any additional parameters. Functions for storing the entries to a folder on the filesystem or a collection in the database provided by compression:fs-store-entry4($dest) and compression:db-store-entry4($dest).</xqdoc:param>
+                <xqdoc:param>$entry-data-param* A sequence with an additional parameters for storing function.</xqdoc:param>
+                <xqdoc:param>$encoding The encoding to be used during uncompressing eg: UTF8 or Cp437 from https://docs.oracle.com/javase/8/docs/technotes/guides/intl/encoding.doc.html</xqdoc:param>
+                <xqdoc:return>item()*</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+        <xqdoc:function>
+            <xqdoc:name>compression:gzip</xqdoc:name>
+            <xqdoc:signature>compression:gzip($data as xs:base64Binary) as xs:base64Binary?</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description>GZip's data</xqdoc:description>
+                <xqdoc:param>$data The data to GZip</xqdoc:param>
+                <xqdoc:return>xs:base64Binary?</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+        <xqdoc:function>
+            <xqdoc:name>compression:ungzip</xqdoc:name>
+            <xqdoc:signature>compression:ungzip($gzip-data as xs:base64Binary) as xs:base64Binary?</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description>UnGZip's data</xqdoc:description>
+                <xqdoc:param>$gzip-data The gzip data to uncompress.</xqdoc:param>
+                <xqdoc:return>xs:base64Binary?</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+        <xqdoc:function>
+            <xqdoc:name>compression:deflate</xqdoc:name>
+            <xqdoc:signature>compression:deflate($data as xs:base64Binary) as xs:base64Binary?</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description>Deflate data (RFC 1950)</xqdoc:description>
+                <xqdoc:param>$data The data to Deflate</xqdoc:param>
+                <xqdoc:return>xs:base64Binary?</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+        <xqdoc:function>
+            <xqdoc:name>compression:deflate</xqdoc:name>
+            <xqdoc:signature>compression:deflate($data as xs:base64Binary, $raw as xs:boolean) as xs:base64Binary?</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description>Deflate data (RFC 1951)</xqdoc:description>
+                <xqdoc:param>$data The data to Deflate</xqdoc:param>
+                <xqdoc:param>$raw If true, create raw deflate data that is not wrapped inside zlib header and checksum.</xqdoc:param>
+                <xqdoc:return>xs:base64Binary?</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+        <xqdoc:function>
+            <xqdoc:name>compression:inflate</xqdoc:name>
+            <xqdoc:signature>compression:inflate($inflate-data as xs:base64Binary) as xs:base64Binary?</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description>Inflate data (RFC 1950)</xqdoc:description>
+                <xqdoc:param>$inflate-data The inflate data to uncompress.</xqdoc:param>
+                <xqdoc:return>xs:base64Binary?</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+        <xqdoc:function>
+            <xqdoc:name>compression:inflate</xqdoc:name>
+            <xqdoc:signature>compression:inflate($inflate-data as xs:base64Binary, $raw as xs:boolean) as xs:base64Binary?</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description>Inflate data (RFC 1951)</xqdoc:description>
+                <xqdoc:param>$inflate-data The inflate data to uncompress.</xqdoc:param>
+                <xqdoc:param>$raw If true, expect raw deflate data that is not wrapped inside zlib header and checksum.</xqdoc:param>
+                <xqdoc:return>xs:base64Binary?</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+        <xqdoc:function>
+            <xqdoc:name>compression:tar</xqdoc:name>
+            <xqdoc:signature>compression:tar($sources as xs:anyType+, $use-collection-hierarchy as xs:boolean) as xs:base64Binary*</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description>Tars nodes, resources and collections.</xqdoc:description>
+                <xqdoc:param>$sources+ The sequence of URI's and/or Entrys. If an URI points to a collection then the collection, its resources and sub-collections are zipped recursively. If URI points to file (available only to the DBA role.) then file or directory are zipped. An Entry takes the format &lt;entry name="filename.ext" type="collection|uri|binary|xml|text" method="deflate|store"&gt;data&lt;/entry&gt;. The method attribute is only effective for the compression:zip function.</xqdoc:param>
+                <xqdoc:param>$use-collection-hierarchy Indicates whether the Collection hierarchy (if any) should be preserved in the zip file.</xqdoc:param>
+                <xqdoc:return>xs:base64Binary*</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+        <xqdoc:function>
+            <xqdoc:name>compression:tar</xqdoc:name>
+            <xqdoc:signature>compression:tar($sources as xs:anyType+, $use-collection-hierarchy as xs:boolean, $strip-prefix as xs:string) as xs:base64Binary*</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description>Tars nodes, resources and collections.</xqdoc:description>
+                <xqdoc:param>$sources+ The sequence of URI's and/or Entrys. If an URI points to a collection then the collection, its resources and sub-collections are zipped recursively. If URI points to file (available only to the DBA role.) then file or directory are zipped. An Entry takes the format &lt;entry name="filename.ext" type="collection|uri|binary|xml|text" method="deflate|store"&gt;data&lt;/entry&gt;. The method attribute is only effective for the compression:zip function.</xqdoc:param>
+                <xqdoc:param>$use-collection-hierarchy Indicates whether the Collection hierarchy (if any) should be preserved in the zip file.</xqdoc:param>
+                <xqdoc:param>$strip-prefix This prefix is stripped from the Entrys name</xqdoc:param>
+                <xqdoc:return>xs:base64Binary*</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+        <xqdoc:function>
+            <xqdoc:name>compression:tar</xqdoc:name>
+            <xqdoc:signature>compression:tar($sources as xs:anyType+, $use-collection-hierarchy as xs:boolean, $strip-prefix as xs:string, $encoding as xs:string) as xs:base64Binary*</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description>Tars nodes, resources and collections.</xqdoc:description>
+                <xqdoc:param>$sources+ The sequence of URI's and/or Entrys. If an URI points to a collection then the collection, its resources and sub-collections are zipped recursively. If URI points to file (available only to the DBA role.) then file or directory are zipped. An Entry takes the format &lt;entry name="filename.ext" type="collection|uri|binary|xml|text" method="deflate|store"&gt;data&lt;/entry&gt;. The method attribute is only effective for the compression:zip function.</xqdoc:param>
+                <xqdoc:param>$use-collection-hierarchy Indicates whether the Collection hierarchy (if any) should be preserved in the zip file.</xqdoc:param>
+                <xqdoc:param>$strip-prefix This prefix is stripped from the Entrys name</xqdoc:param>
+                <xqdoc:param>$encoding This encoding to be used for filenames inside the compressed file</xqdoc:param>
+                <xqdoc:return>xs:base64Binary*</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+        <xqdoc:function>
+            <xqdoc:name>untar</xqdoc:name>
+            <xqdoc:signature>untar($tar-data as xs:base64Binary, $entry-filter as function(*), $entry-data as function(*)) as item()*</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description>UnTar all the resources/folders from the provided data by calling user defined functions to determine what and how to store the resources/folders</xqdoc:description>
+                <xqdoc:param>$tar-data The tar file data</xqdoc:param>
+                <xqdoc:param>$entry-filter A user defined function for filtering resources from the tar file. The function takes 2 parameters e.g. user:untar-entry-filter($path as xs:string, $data-type as xs:string) as xs:boolean. $data-type may be 'resource' or 'folder'. If the return type is true() it indicates the entry should be processed and passed to the entry-data function, else the resource is skipped. If you wish to extract all resources you can use the provided compression:no-filter#2 function.</xqdoc:param>
+                <xqdoc:param>$entry-data A user defined function for storing an extracted resource from the tar file. The function takes 3 parameters e.g. user:untar-entry-data($path as xs:string, $data-type as xs:string, $data as item()?). Or a user defined function which returns a db path for storing an extracted resource from the tar file. The function takes 3 parameters e.g. user:entry-path($path as xs:string, $data-type as xs:string, $param as item()*) as xs:anyURI. $data-type may be 'resource' or 'folder'. Functions for storing the entries to a folder on the filesystem or a collection in the database provided by compression:fs-store-entry3($dest) and compression:db-store-entry3($dest).</xqdoc:param>
+                <xqdoc:return>item()*</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+        <xqdoc:function>
+            <xqdoc:name>untar</xqdoc:name>
+            <xqdoc:signature>untar($tar-data as xs:base64Binary, $entry-filter as function(*), $entry-filter-param as xs:anyType*, $entry-data as function(*), $entry-data-param as xs:anyType*) as item()*</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description>UnTar all the resources/folders from the provided data by calling user defined functions to determine what and how to store the resources/folders</xqdoc:description>
+                <xqdoc:param>$tar-data The tar file data</xqdoc:param>
+                <xqdoc:param>$entry-filter A user defined function for filtering resources from the tar file. The function takes 3 parameters e.g. user:untar-entry-filter($path as xs:string, $data-type as xs:string, $param as item()*) as xs:boolean. $data-type may be 'resource' or 'folder'. $param is a sequence with any additional parameters, for example a list of extracted files. If the return type is true() it indicates the entry should be processed and passed to the entry-data function, else the resource is skipped. If you wish to extract all resources you can use the provided compression:no-filter#3 function.</xqdoc:param>
+                <xqdoc:param>$entry-filter-param* A sequence with an additional parameters for filtering function.</xqdoc:param>
+                <xqdoc:param>$entry-data A user defined function for storing an extracted resource from the tar file. The function takes 4 parameters e.g. user:untar-entry-data($path as xs:string, $data-type as xs:string, $data as item()?, $param as item()*). Or a user defined function which returns a db path for storing an extracted resource from the tar file. The function takes 3 parameters e.g. user:entry-path($path as xs:string, $data-type as xs:string, $param as item()*) as xs:anyURI. $data-type may be 'resource' or 'folder'. $param is a sequence with any additional parametersFunctions for storing the entries to a folder on the filesystem or a collection in the database provided by compression:fs-store-entry4($dest) and compression:db-store-entry4($dest).</xqdoc:param>
+                <xqdoc:param>$entry-data-param* A sequence with an additional parameters for storing function.</xqdoc:param>
+                <xqdoc:return>item()*</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+        <xqdoc:function>
+            <xqdoc:name>untar</xqdoc:name>
+            <xqdoc:signature>untar($tar-data as xs:base64Binary, $entry-filter as function(*), $entry-filter-param as xs:anyType*, $entry-data as function(*), $entry-data-param as xs:anyType*, $encoding as xs:string) as item()*</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description>UnTar all the resources/folders from the provided data by calling user defined functions to determine what and how to store the resources/folders</xqdoc:description>
+                <xqdoc:param>$tar-data The tar file data</xqdoc:param>
+                <xqdoc:param>$entry-filter A user defined function for filtering resources from the tar file. The function takes 3 parameters e.g. user:untar-entry-filter($path as xs:string, $data-type as xs:string, $param as item()*) as xs:boolean. $data-type may be 'resource' or 'folder'. $param is a sequence with any additional parameters, for example a list of extracted files. If the return type is true() it indicates the entry should be processed and passed to the entry-data function, else the resource is skipped. If you wish to extract all resources you can use the provided compression:no-filter#3 function.</xqdoc:param>
+                <xqdoc:param>$entry-filter-param* A sequence with an additional parameters for filtering function.</xqdoc:param>
+                <xqdoc:param>$entry-data A user defined function for storing an extracted resource from the tar file. The function takes 4 parameters e.g. user:untar-entry-data($path as xs:string, $data-type as xs:string, $data as item()?, $param as item()*). Or a user defined function which returns a db path for storing an extracted resource from the tar file. The function takes 3 parameters e.g. user:entry-path($path as xs:string, $data-type as xs:string, $param as item()*) as xs:anyURI. $data-type may be 'resource' or 'folder'. $param is a sequence with any additional parametersFunctions for storing the entries to a folder on the filesystem or a collection in the database provided by compression:fs-store-entry4($dest) and compression:db-store-entry4($dest).</xqdoc:param>
+                <xqdoc:param>$entry-data-param* A sequence with an additional parameters for storing function.</xqdoc:param>
+                <xqdoc:param>$encoding The encoding to be used during uncompressing eg: UTF8 or Cp437 from https://docs.oracle.com/javase/8/docs/technotes/guides/intl/encoding.doc.html</xqdoc:param>
+                <xqdoc:return>item()*</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+        <xqdoc:function>
+            <xqdoc:name>no-filter</xqdoc:name>
+            <xqdoc:signature>no-filter($path as xs:string, $data-type as xs:string) as xs:boolean</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description>Does not filter any entries.</xqdoc:description>
+                <xqdoc:param>$path The path of the entry</xqdoc:param>
+                <xqdoc:param>$data-type The type of the entry, either 'directory' or 'resource'.</xqdoc:param>
+                <xqdoc:return>xs:boolean : Always true, so that no entries are filtered. Parameters are ignored.</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+        <xqdoc:function>
+            <xqdoc:name>no-filter</xqdoc:name>
+            <xqdoc:signature>no-filter($path as xs:string, $data-type as xs:string, $param as item()*) as xs:boolean</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description>Does not filter any entries.</xqdoc:description>
+                <xqdoc:param>$path The path of the entry</xqdoc:param>
+                <xqdoc:param>$data-type The type of the entry, either 'directory' or 'resource'.</xqdoc:param>
+                <xqdoc:param>$param* One or more parameters.</xqdoc:param>
+                <xqdoc:return>xs:boolean : Always true, so that no entries are filtered. Parameters are ignored.</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+        <xqdoc:function>
+            <xqdoc:name>fs-store-entry3</xqdoc:name>
+            <xqdoc:signature>fs-store-entry3($destination as xs:string?) as function(*)</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description>Stores an entry to the filesystem. This method is only available to the DBA role. Attempts to guard against exit attacks; If an exit attack is detected then the error `compression:archive-exit-attack is raised`.</xqdoc:description>
+                <xqdoc:param>$destination? A path to a directory on the filesystem where the entry should be extracted. If the path does not exist it will be created.</xqdoc:param>
+                <xqdoc:return>function(*) : A function suitable for passing as the $entry-data#3</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+        <xqdoc:function>
+            <xqdoc:name>fs-store-entry4</xqdoc:name>
+            <xqdoc:signature>fs-store-entry4($destination as xs:string?) as function(*)</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description>Stores an entry to the filesystem. This method is only available to the DBA role. Attempts to guard against exit attacks; If an exit attack is detected then the error `compression:archive-exit-attack is raised`.</xqdoc:description>
+                <xqdoc:param>$destination? A path to a directory on the filesystem where the entry should be extracted. If the path does not exist it will be created.</xqdoc:param>
+                <xqdoc:return>function(*) : A function suitable for passing as the $entry-data#4</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+        <xqdoc:function>
+            <xqdoc:name>db-store-entry3</xqdoc:name>
+            <xqdoc:signature>db-store-entry3($destination as xs:string?) as function(*)</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description>Stores an entry to the database. Attempts to guard against exit attacks; If an exit attack is detected then the error `compression:archive-exit-attack is raised`.</xqdoc:description>
+                <xqdoc:param>$destination? A path to a Collection in the database where the entry should be extracted. If the Collection does not exist it will be created.</xqdoc:param>
+                <xqdoc:return>function(*) : A function suitable for passing as the $entry-data#3</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+        <xqdoc:function>
+            <xqdoc:name>db-store-entry4</xqdoc:name>
+            <xqdoc:signature>db-store-entry4($destination as xs:string?) as function(*)</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description>Stores an entry to the database. Attempts to guard against exit attacks; If an exit attack is detected then the error `compression:archive-exit-attack is raised`.</xqdoc:description>
+                <xqdoc:param>$destination? A path to a Collection in the database where the entry should be extracted. If the Collection does not exist it will be created.</xqdoc:param>
+                <xqdoc:return>function(*) : A function suitable for passing as the $entry-data#4</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+    </xqdoc:functions>
+</xqdoc:xqdoc>

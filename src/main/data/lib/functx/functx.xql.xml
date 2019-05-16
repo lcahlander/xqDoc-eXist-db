@@ -1,0 +1,1489 @@
+<xqdoc:xqdoc xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ <xqdoc:control>
+  <xqdoc:date>2019-05-14T12:08:24.519-04:00</xqdoc:date>
+  <xqdoc:location>/db/system/repo/functx-1.0/functx/functx.xql</xqdoc:location>
+ </xqdoc:control>
+ <xqdoc:module type="library">
+  <xqdoc:uri>http://www.functx.com</xqdoc:uri>
+  <xqdoc:name>functx</xqdoc:name>
+  <xqdoc:comment>
+   <xqdoc:description>--------------------------------
+ The FunctX XQuery Function Library
+ --------------------------------
+
+ Copyright (C) 2007 Datypic
+
+ This library is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public
+ License as published by the Free Software Foundation; either
+ version 2.1 of the License.
+
+ This library is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+
+ You should have received a copy of the GNU Lesser General Public
+ License along with this library; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+
+ For more information on the FunctX XQuery library, contact contrib</xqdoc:description>
+   <xqdoc:version> 1.0
+ </xqdoc:version>
+  </xqdoc:comment>
+ </xqdoc:module>
+ <xqdoc:functions>
+  <xqdoc:function>
+   <xqdoc:name>functx:add-attributes</xqdoc:name>
+   <xqdoc:signature>functx:add-attributes($elements as element()*, $attrNames as xs:QName*, $attrValues as xs:anyAtomicType*) as element()?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Adds attributes to XML elements</xqdoc:description>
+    <xqdoc:param>$elements* the element(s) to which you wish to add the attribute</xqdoc:param>
+    <xqdoc:param>$attrNames* the name(s) of the attribute(s) to add</xqdoc:param>
+    <xqdoc:param>$attrValues* the value(s) of the attribute(s) to add</xqdoc:param>
+    <xqdoc:return>element()?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:add-months</xqdoc:name>
+   <xqdoc:signature>functx:add-months($date as xs:anyAtomicType?, $months as xs:integer) as xs:date?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Adds months to a date</xqdoc:description>
+    <xqdoc:param>$date? the date</xqdoc:param>
+    <xqdoc:param>$months the number of months to add</xqdoc:param>
+    <xqdoc:return>xs:date?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:add-or-update-attributes</xqdoc:name>
+   <xqdoc:signature>functx:add-or-update-attributes($elements as element()*, $attrNames as xs:QName*, $attrValues as xs:anyAtomicType*) as element()?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Adds attributes to XML elements</xqdoc:description>
+    <xqdoc:param>$elements* the element(s) to which you wish to add the attribute</xqdoc:param>
+    <xqdoc:param>$attrNames* the name(s) of the attribute(s) to add</xqdoc:param>
+    <xqdoc:param>$attrValues* the value(s) of the attribute(s) to add</xqdoc:param>
+    <xqdoc:return>element()?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:all-whitespace</xqdoc:name>
+   <xqdoc:signature>functx:all-whitespace($arg as xs:string?) as xs:boolean</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Whether a value is all whitespace or a zero-length string</xqdoc:description>
+    <xqdoc:param>$arg? the string (or node) to test</xqdoc:param>
+    <xqdoc:return>xs:boolean</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:are-distinct-values</xqdoc:name>
+   <xqdoc:signature>functx:are-distinct-values($seq as xs:anyAtomicType*) as xs:boolean</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Whether all the values in a sequence are distinct</xqdoc:description>
+    <xqdoc:param>$seq* the sequence of values</xqdoc:param>
+    <xqdoc:return>xs:boolean</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:atomic-type</xqdoc:name>
+   <xqdoc:signature>functx:atomic-type($values as xs:anyAtomicType*) as xs:string*</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The built-in type of an atomic value</xqdoc:description>
+    <xqdoc:param>$values* the value(s) whose type you want to determine</xqdoc:param>
+    <xqdoc:return>xs:string*</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:avg-empty-is-zero</xqdoc:name>
+   <xqdoc:signature>functx:avg-empty-is-zero($values as xs:anyAtomicType*, $allNodes as node()*) as xs:double</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The average, counting "empty" values as zero</xqdoc:description>
+    <xqdoc:param>$values* the values to be averaged</xqdoc:param>
+    <xqdoc:param>$allNodes* the sequence of all nodes to find the average over</xqdoc:param>
+    <xqdoc:return>xs:double</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:between-exclusive</xqdoc:name>
+   <xqdoc:signature>functx:between-exclusive($value as xs:anyAtomicType?, $minValue as xs:anyAtomicType, $maxValue as xs:anyAtomicType) as xs:boolean</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Whether a value is between two provided values</xqdoc:description>
+    <xqdoc:param>$value? the value to be tested</xqdoc:param>
+    <xqdoc:param>$minValue the minimum value</xqdoc:param>
+    <xqdoc:param>$maxValue the maximum value</xqdoc:param>
+    <xqdoc:return>xs:boolean</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:between-inclusive</xqdoc:name>
+   <xqdoc:signature>functx:between-inclusive($value as xs:anyAtomicType?, $minValue as xs:anyAtomicType, $maxValue as xs:anyAtomicType) as xs:boolean</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Whether a value is between two provided values, or equal to one of them</xqdoc:description>
+    <xqdoc:param>$value? the value to be tested</xqdoc:param>
+    <xqdoc:param>$minValue the minimum value</xqdoc:param>
+    <xqdoc:param>$maxValue the maximum value</xqdoc:param>
+    <xqdoc:return>xs:boolean</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:camel-case-to-words</xqdoc:name>
+   <xqdoc:signature>functx:camel-case-to-words($arg as xs:string?, $delim as xs:string) as xs:string</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Turns a camelCase string into space-separated words</xqdoc:description>
+    <xqdoc:param>$arg? the string to modify</xqdoc:param>
+    <xqdoc:param>$delim the delimiter for the words (e.g. a space)</xqdoc:param>
+    <xqdoc:return>xs:string</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:capitalize-first</xqdoc:name>
+   <xqdoc:signature>functx:capitalize-first($arg as xs:string?) as xs:string?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Capitalizes the first character of a string</xqdoc:description>
+    <xqdoc:param>$arg? the word or phrase to capitalize</xqdoc:param>
+    <xqdoc:return>xs:string?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:change-element-names-deep</xqdoc:name>
+   <xqdoc:signature>functx:change-element-names-deep($nodes as node()*, $oldNames as xs:QName*, $newNames as xs:QName*) as node()*</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Changes the names of elements in an XML fragment</xqdoc:description>
+    <xqdoc:param>$nodes* the element(s) to change</xqdoc:param>
+    <xqdoc:param>$oldNames* the sequence of names to change from</xqdoc:param>
+    <xqdoc:param>$newNames* the sequence of names to change to</xqdoc:param>
+    <xqdoc:return>node()*</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:change-element-ns</xqdoc:name>
+   <xqdoc:signature>functx:change-element-ns($elements as element()*, $newns as xs:string, $prefix as xs:string) as element()?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Changes the namespace of XML elements</xqdoc:description>
+    <xqdoc:param>$elements* the elements to change</xqdoc:param>
+    <xqdoc:param>$newns the new namespace</xqdoc:param>
+    <xqdoc:param>$prefix the prefix to use for the new namespace</xqdoc:param>
+    <xqdoc:return>element()?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:change-element-ns-deep</xqdoc:name>
+   <xqdoc:signature>functx:change-element-ns-deep($nodes as node()*, $newns as xs:string, $prefix as xs:string) as node()*</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Changes the namespace of XML elements and its descendants</xqdoc:description>
+    <xqdoc:param>$nodes* the nodes to change</xqdoc:param>
+    <xqdoc:param>$newns the new namespace</xqdoc:param>
+    <xqdoc:param>$prefix the prefix to use for the new namespace</xqdoc:param>
+    <xqdoc:return>node()*</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:chars</xqdoc:name>
+   <xqdoc:signature>functx:chars($arg as xs:string?) as xs:string*</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Converts a string to a sequence of characters</xqdoc:description>
+    <xqdoc:param>$arg? the string to split</xqdoc:param>
+    <xqdoc:return>xs:string*</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:contains-any-of</xqdoc:name>
+   <xqdoc:signature>functx:contains-any-of($arg as xs:string?, $searchStrings as xs:string*) as xs:boolean</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Whether a string contains any of a sequence of strings</xqdoc:description>
+    <xqdoc:param>$arg? the string to test</xqdoc:param>
+    <xqdoc:param>$searchStrings* the strings to look for</xqdoc:param>
+    <xqdoc:return>xs:boolean</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:contains-case-insensitive</xqdoc:name>
+   <xqdoc:signature>functx:contains-case-insensitive($arg as xs:string?, $substring as xs:string) as xs:boolean?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Whether one string contains another, without regard to case</xqdoc:description>
+    <xqdoc:param>$arg? the string to search</xqdoc:param>
+    <xqdoc:param>$substring the substring to find</xqdoc:param>
+    <xqdoc:return>xs:boolean?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:contains-word</xqdoc:name>
+   <xqdoc:signature>functx:contains-word($arg as xs:string?, $word as xs:string) as xs:boolean</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Whether one string contains another, as a separate word</xqdoc:description>
+    <xqdoc:param>$arg? the string to search</xqdoc:param>
+    <xqdoc:param>$word the word to find</xqdoc:param>
+    <xqdoc:return>xs:boolean</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:copy-attributes</xqdoc:name>
+   <xqdoc:signature>functx:copy-attributes($copyTo as element(), $copyFrom as element()) as element()</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Copies attributes from one element to another</xqdoc:description>
+    <xqdoc:param>$copyTo the element to copy attributes to</xqdoc:param>
+    <xqdoc:param>$copyFrom the element to copy attributes from</xqdoc:param>
+    <xqdoc:return>element()</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:date</xqdoc:name>
+   <xqdoc:signature>functx:date($year as xs:anyAtomicType, $month as xs:anyAtomicType, $day as xs:anyAtomicType) as xs:date</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Construct a date from a year, month and day</xqdoc:description>
+    <xqdoc:param>$year the year</xqdoc:param>
+    <xqdoc:param>$month the month</xqdoc:param>
+    <xqdoc:param>$day the day</xqdoc:param>
+    <xqdoc:return>xs:date</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:dateTime</xqdoc:name>
+   <xqdoc:signature>functx:dateTime($year as xs:anyAtomicType, $month as xs:anyAtomicType, $day as xs:anyAtomicType, $hour as xs:anyAtomicType, $minute as xs:anyAtomicType, $second as xs:anyAtomicType) as xs:dateTime</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Construct a date/time from individual components</xqdoc:description>
+    <xqdoc:param>$year the year</xqdoc:param>
+    <xqdoc:param>$month the month</xqdoc:param>
+    <xqdoc:param>$day the day</xqdoc:param>
+    <xqdoc:param>$hour the hour</xqdoc:param>
+    <xqdoc:param>$minute the minute</xqdoc:param>
+    <xqdoc:param>$second the second</xqdoc:param>
+    <xqdoc:return>xs:dateTime</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:day-in-year</xqdoc:name>
+   <xqdoc:signature>functx:day-in-year($date as xs:anyAtomicType?) as xs:integer?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The day of the year (a number between 1 and 366)</xqdoc:description>
+    <xqdoc:param>$date? the date</xqdoc:param>
+    <xqdoc:return>xs:integer?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:day-of-week</xqdoc:name>
+   <xqdoc:signature>functx:day-of-week($date as xs:anyAtomicType?) as xs:integer?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The day of the week, from a date</xqdoc:description>
+    <xqdoc:param>$date? the date</xqdoc:param>
+    <xqdoc:return>xs:integer?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:day-of-week-abbrev-en</xqdoc:name>
+   <xqdoc:signature>functx:day-of-week-abbrev-en($date as xs:anyAtomicType?) as xs:string?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The abbreviated day of the week, from a date, in English</xqdoc:description>
+    <xqdoc:param>$date? the date</xqdoc:param>
+    <xqdoc:return>xs:string?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:day-of-week-name-en</xqdoc:name>
+   <xqdoc:signature>functx:day-of-week-name-en($date as xs:anyAtomicType?) as xs:string?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The name of the day of the week, from a date, in English</xqdoc:description>
+    <xqdoc:param>$date? the date</xqdoc:param>
+    <xqdoc:return>xs:string?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:dayTimeDuration</xqdoc:name>
+   <xqdoc:signature>functx:dayTimeDuration($days as xs:decimal?, $hours as xs:decimal?, $minutes as xs:decimal?, $seconds as xs:decimal?) as xs:dayTimeDuration</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Construct a dayTimeDuration from a number of days, hours, etc.</xqdoc:description>
+    <xqdoc:param>$days? the number of days</xqdoc:param>
+    <xqdoc:param>$hours? the number of hours</xqdoc:param>
+    <xqdoc:param>$minutes? the number of minutes</xqdoc:param>
+    <xqdoc:param>$seconds? the number of seconds</xqdoc:param>
+    <xqdoc:return>xs:dayTimeDuration</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:days-in-month</xqdoc:name>
+   <xqdoc:signature>functx:days-in-month($date as xs:anyAtomicType?) as xs:integer?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Number of days in the month</xqdoc:description>
+    <xqdoc:param>$date? the date</xqdoc:param>
+    <xqdoc:return>xs:integer?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:depth-of-node</xqdoc:name>
+   <xqdoc:signature>functx:depth-of-node($node as node()?) as xs:integer</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The depth (level) of a node in an XML tree</xqdoc:description>
+    <xqdoc:param>$node? the node to check</xqdoc:param>
+    <xqdoc:return>xs:integer</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:distinct-attribute-names</xqdoc:name>
+   <xqdoc:signature>functx:distinct-attribute-names($nodes as node()*) as xs:string*</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The distinct names of all attributes in an XML fragment</xqdoc:description>
+    <xqdoc:param>$nodes* the root to start from</xqdoc:param>
+    <xqdoc:return>xs:string*</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:distinct-deep</xqdoc:name>
+   <xqdoc:signature>functx:distinct-deep($nodes as node()*) as node()*</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The XML nodes with distinct values, taking into account attributes and descendants</xqdoc:description>
+    <xqdoc:param>$nodes* the sequence of nodes to test</xqdoc:param>
+    <xqdoc:return>node()*</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:distinct-element-names</xqdoc:name>
+   <xqdoc:signature>functx:distinct-element-names($nodes as node()*) as xs:string*</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The distinct names of all elements in an XML fragment</xqdoc:description>
+    <xqdoc:param>$nodes* the root(s) to start from</xqdoc:param>
+    <xqdoc:return>xs:string*</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:distinct-element-paths</xqdoc:name>
+   <xqdoc:signature>functx:distinct-element-paths($nodes as node()*) as xs:string*</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The distinct paths of all descendant elements in an XML fragment</xqdoc:description>
+    <xqdoc:param>$nodes* the root(s) to start from</xqdoc:param>
+    <xqdoc:return>xs:string*</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:distinct-nodes</xqdoc:name>
+   <xqdoc:signature>functx:distinct-nodes($nodes as node()*) as node()*</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The distinct XML nodes in a sequence (by node identity)</xqdoc:description>
+    <xqdoc:param>$nodes* the node sequence</xqdoc:param>
+    <xqdoc:return>node()*</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:duration-from-timezone</xqdoc:name>
+   <xqdoc:signature>functx:duration-from-timezone($timezone as xs:string) as xs:dayTimeDuration</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Converts a timezone like "-05:00" or "Z" into xs:dayTimeDuration</xqdoc:description>
+    <xqdoc:param>$timezone the time zone, in (+|-)HH:MM format</xqdoc:param>
+    <xqdoc:return>xs:dayTimeDuration</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:dynamic-path</xqdoc:name>
+   <xqdoc:signature>functx:dynamic-path($parent as node(), $path as xs:string) as item()*</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Dynamically evaluates a simple XPath path</xqdoc:description>
+    <xqdoc:param>$parent the root to start from</xqdoc:param>
+    <xqdoc:param>$path the path expression</xqdoc:param>
+    <xqdoc:return>item()*</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:escape-for-regex</xqdoc:name>
+   <xqdoc:signature>functx:escape-for-regex($arg as xs:string?) as xs:string</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Escapes regex special characters</xqdoc:description>
+    <xqdoc:param>$arg? the string to escape</xqdoc:param>
+    <xqdoc:return>xs:string</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:exclusive-or</xqdoc:name>
+   <xqdoc:signature>functx:exclusive-or($arg1 as xs:boolean?, $arg2 as xs:boolean?) as xs:boolean?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Whether one (and only one) of two boolean values is true</xqdoc:description>
+    <xqdoc:param>$arg1? the first boolean value</xqdoc:param>
+    <xqdoc:param>$arg2? the second boolean value</xqdoc:param>
+    <xqdoc:return>xs:boolean?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:first-day-of-month</xqdoc:name>
+   <xqdoc:signature>functx:first-day-of-month($date as xs:anyAtomicType?) as xs:date?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The first day of the month of a date</xqdoc:description>
+    <xqdoc:param>$date? the date</xqdoc:param>
+    <xqdoc:return>xs:date?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:first-day-of-year</xqdoc:name>
+   <xqdoc:signature>functx:first-day-of-year($date as xs:anyAtomicType?) as xs:date?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The first day of the year of a date</xqdoc:description>
+    <xqdoc:param>$date? the date</xqdoc:param>
+    <xqdoc:return>xs:date?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:first-node</xqdoc:name>
+   <xqdoc:signature>functx:first-node($nodes as node()*) as node()?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The XML node in a sequence that appears first in document order</xqdoc:description>
+    <xqdoc:param>$nodes* the sequence of nodes</xqdoc:param>
+    <xqdoc:return>node()?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:follows-not-descendant</xqdoc:name>
+   <xqdoc:signature>functx:follows-not-descendant($a as node()?, $b as node()?) as xs:boolean</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Whether an XML node follows another without being its descendant</xqdoc:description>
+    <xqdoc:param>$a? the first node</xqdoc:param>
+    <xqdoc:param>$b? the second node</xqdoc:param>
+    <xqdoc:return>xs:boolean</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:format-as-title-en</xqdoc:name>
+   <xqdoc:signature>functx:format-as-title-en($titles as xs:string*) as xs:string*</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Moves title words like "the" and "a" to the end of strings</xqdoc:description>
+    <xqdoc:param>$titles* the titles to format</xqdoc:param>
+    <xqdoc:return>xs:string*</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:fragment-from-uri</xqdoc:name>
+   <xqdoc:signature>functx:fragment-from-uri($uri as xs:string?) as xs:string?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Returns the fragment from a URI</xqdoc:description>
+    <xqdoc:param>$uri? the URI</xqdoc:param>
+    <xqdoc:return>xs:string?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:get-matches</xqdoc:name>
+   <xqdoc:signature>functx:get-matches($string as xs:string?, $regex as xs:string) as xs:string*</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Return the matching regions of a string</xqdoc:description>
+    <xqdoc:param>$string? the string to split</xqdoc:param>
+    <xqdoc:param>$regex the pattern</xqdoc:param>
+    <xqdoc:return>xs:string*</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:get-matches-and-non-matches</xqdoc:name>
+   <xqdoc:signature>functx:get-matches-and-non-matches($string as xs:string?, $regex as xs:string) as element()*</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Splits a string into matching and non-matching regions</xqdoc:description>
+    <xqdoc:param>$string? the string to split</xqdoc:param>
+    <xqdoc:param>$regex the pattern</xqdoc:param>
+    <xqdoc:return>element()*</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:has-element-only-content</xqdoc:name>
+   <xqdoc:signature>functx:has-element-only-content($element as element()) as xs:boolean</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Whether an element has element-only content</xqdoc:description>
+    <xqdoc:param>$element the XML element to test</xqdoc:param>
+    <xqdoc:return>xs:boolean</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:has-empty-content</xqdoc:name>
+   <xqdoc:signature>functx:has-empty-content($element as element()) as xs:boolean</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Whether an element has empty content</xqdoc:description>
+    <xqdoc:param>$element the XML element to test</xqdoc:param>
+    <xqdoc:return>xs:boolean</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:has-mixed-content</xqdoc:name>
+   <xqdoc:signature>functx:has-mixed-content($element as element()) as xs:boolean</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Whether an element has mixed content</xqdoc:description>
+    <xqdoc:param>$element the XML element to test</xqdoc:param>
+    <xqdoc:return>xs:boolean</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:has-simple-content</xqdoc:name>
+   <xqdoc:signature>functx:has-simple-content($element as element()) as xs:boolean</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Whether an element has simple content</xqdoc:description>
+    <xqdoc:param>$element the XML element to test</xqdoc:param>
+    <xqdoc:return>xs:boolean</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:id-from-element</xqdoc:name>
+   <xqdoc:signature>functx:id-from-element($element as element()?) as xs:string?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Gets the ID of an XML element</xqdoc:description>
+    <xqdoc:param>$element? the element</xqdoc:param>
+    <xqdoc:return>xs:string?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:id-untyped</xqdoc:name>
+   <xqdoc:signature>functx:id-untyped($node as node()*, $id as xs:anyAtomicType) as element()*</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Gets XML element(s) that have an attribute with a particular value</xqdoc:description>
+    <xqdoc:param>$node* the root node(s) to start from</xqdoc:param>
+    <xqdoc:param>$id the "id" to find</xqdoc:param>
+    <xqdoc:return>element()*</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:if-absent</xqdoc:name>
+   <xqdoc:signature>functx:if-absent($arg as item()*, $value as item()*) as item()*</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The first argument if it is not empty, otherwise the second argument</xqdoc:description>
+    <xqdoc:param>$arg* the item(s) that may be absent</xqdoc:param>
+    <xqdoc:param>$value* the item(s) to use if the item is absent</xqdoc:param>
+    <xqdoc:return>item()*</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:if-empty</xqdoc:name>
+   <xqdoc:signature>functx:if-empty($arg as item()?, $value as item()*) as item()*</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The first argument if it is not blank, otherwise the second argument</xqdoc:description>
+    <xqdoc:param>$arg? the node that may be empty</xqdoc:param>
+    <xqdoc:param>$value* the item(s) to use if the node is empty</xqdoc:param>
+    <xqdoc:return>item()*</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:index-of-deep-equal-node</xqdoc:name>
+   <xqdoc:signature>functx:index-of-deep-equal-node($nodes as node()*, $nodeToFind as node()) as xs:integer*</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The position of a node in a sequence, based on contents and attributes</xqdoc:description>
+    <xqdoc:param>$nodes* the node sequence</xqdoc:param>
+    <xqdoc:param>$nodeToFind the node to find in the sequence</xqdoc:param>
+    <xqdoc:return>xs:integer*</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:index-of-match-first</xqdoc:name>
+   <xqdoc:signature>functx:index-of-match-first($arg as xs:string?, $pattern as xs:string) as xs:integer?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The first position of a matching substring</xqdoc:description>
+    <xqdoc:param>$arg? the string</xqdoc:param>
+    <xqdoc:param>$pattern the pattern to match</xqdoc:param>
+    <xqdoc:return>xs:integer?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:index-of-node</xqdoc:name>
+   <xqdoc:signature>functx:index-of-node($nodes as node()*, $nodeToFind as node()) as xs:integer*</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The position of a node in a sequence, based on node identity</xqdoc:description>
+    <xqdoc:param>$nodes* the node sequence</xqdoc:param>
+    <xqdoc:param>$nodeToFind the node to find in the sequence</xqdoc:param>
+    <xqdoc:return>xs:integer*</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:index-of-string</xqdoc:name>
+   <xqdoc:signature>functx:index-of-string($arg as xs:string?, $substring as xs:string) as xs:integer*</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The position(s) of a substring</xqdoc:description>
+    <xqdoc:param>$arg? the string</xqdoc:param>
+    <xqdoc:param>$substring the substring to find</xqdoc:param>
+    <xqdoc:return>xs:integer*</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:index-of-string-first</xqdoc:name>
+   <xqdoc:signature>functx:index-of-string-first($arg as xs:string?, $substring as xs:string) as xs:integer?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The first position of a substring</xqdoc:description>
+    <xqdoc:param>$arg? the string</xqdoc:param>
+    <xqdoc:param>$substring the substring to find</xqdoc:param>
+    <xqdoc:return>xs:integer?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:index-of-string-last</xqdoc:name>
+   <xqdoc:signature>functx:index-of-string-last($arg as xs:string?, $substring as xs:string) as xs:integer?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The last position of a substring</xqdoc:description>
+    <xqdoc:param>$arg? the string</xqdoc:param>
+    <xqdoc:param>$substring the substring to find</xqdoc:param>
+    <xqdoc:return>xs:integer?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:insert-string</xqdoc:name>
+   <xqdoc:signature>functx:insert-string($originalString as xs:string?, $stringToInsert as xs:string?, $pos as xs:integer) as xs:string</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Inserts a string at a specified position</xqdoc:description>
+    <xqdoc:param>$originalString? the original string to insert into</xqdoc:param>
+    <xqdoc:param>$stringToInsert? the string to insert</xqdoc:param>
+    <xqdoc:param>$pos the position</xqdoc:param>
+    <xqdoc:return>xs:string</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:is-a-number</xqdoc:name>
+   <xqdoc:signature>functx:is-a-number($value as xs:anyAtomicType?) as xs:boolean</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Whether a value is numeric</xqdoc:description>
+    <xqdoc:param>$value? the value to test</xqdoc:param>
+    <xqdoc:return>xs:boolean</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:is-absolute-uri</xqdoc:name>
+   <xqdoc:signature>functx:is-absolute-uri($uri as xs:string?) as xs:boolean</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Whether a URI is absolute</xqdoc:description>
+    <xqdoc:param>$uri? the URI to test</xqdoc:param>
+    <xqdoc:return>xs:boolean</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:is-ancestor</xqdoc:name>
+   <xqdoc:signature>functx:is-ancestor($node1 as node(), $node2 as node()) as xs:boolean</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Whether an XML node is an ancestor of another node</xqdoc:description>
+    <xqdoc:param>$node1 the first node</xqdoc:param>
+    <xqdoc:param>$node2 the second node</xqdoc:param>
+    <xqdoc:return>xs:boolean</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:is-descendant</xqdoc:name>
+   <xqdoc:signature>functx:is-descendant($node1 as node(), $node2 as node()) as xs:boolean</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Whether an XML node is a descendant of another node</xqdoc:description>
+    <xqdoc:param>$node1 the first node</xqdoc:param>
+    <xqdoc:param>$node2 the second node</xqdoc:param>
+    <xqdoc:return>xs:boolean</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:is-leap-year</xqdoc:name>
+   <xqdoc:signature>functx:is-leap-year($date as xs:anyAtomicType?) as xs:boolean</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Whether a date falls in a leap year</xqdoc:description>
+    <xqdoc:param>$date? the date or year</xqdoc:param>
+    <xqdoc:return>xs:boolean</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:is-node-among-descendants</xqdoc:name>
+   <xqdoc:signature>functx:is-node-among-descendants($node as node()?, $seq as node()*) as xs:boolean</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Whether an XML node is among the descendants of a sequence, based on node identity</xqdoc:description>
+    <xqdoc:param>$node? the node to test</xqdoc:param>
+    <xqdoc:param>$seq* the sequence of nodes to search</xqdoc:param>
+    <xqdoc:return>xs:boolean</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:is-node-among-descendants-deep-equal</xqdoc:name>
+   <xqdoc:signature>functx:is-node-among-descendants-deep-equal($node as node()?, $seq as node()*) as xs:boolean</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Whether an XML node is among the descendants of a sequence, based on contents and attributes</xqdoc:description>
+    <xqdoc:param>$node? the node to test</xqdoc:param>
+    <xqdoc:param>$seq* the sequence of nodes to search</xqdoc:param>
+    <xqdoc:return>xs:boolean</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:is-node-in-sequence</xqdoc:name>
+   <xqdoc:signature>functx:is-node-in-sequence($node as node()?, $seq as node()*) as xs:boolean</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Whether an XML node is in a sequence, based on node identity</xqdoc:description>
+    <xqdoc:param>$node? the node to test</xqdoc:param>
+    <xqdoc:param>$seq* the sequence of nodes to search</xqdoc:param>
+    <xqdoc:return>xs:boolean</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:is-node-in-sequence-deep-equal</xqdoc:name>
+   <xqdoc:signature>functx:is-node-in-sequence-deep-equal($node as node()?, $seq as node()*) as xs:boolean</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Whether an XML node is in a sequence, based on contents and attributes</xqdoc:description>
+    <xqdoc:param>$node? the node to test</xqdoc:param>
+    <xqdoc:param>$seq* the sequence of nodes to search</xqdoc:param>
+    <xqdoc:return>xs:boolean</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:is-value-in-sequence</xqdoc:name>
+   <xqdoc:signature>functx:is-value-in-sequence($value as xs:anyAtomicType?, $seq as xs:anyAtomicType*) as xs:boolean</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Whether an atomic value appears in a sequence</xqdoc:description>
+    <xqdoc:param>$value? the atomic value to test</xqdoc:param>
+    <xqdoc:param>$seq* the sequence of values to search</xqdoc:param>
+    <xqdoc:return>xs:boolean</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:last-day-of-month</xqdoc:name>
+   <xqdoc:signature>functx:last-day-of-month($date as xs:anyAtomicType?) as xs:date?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The last day of the month of a date</xqdoc:description>
+    <xqdoc:param>$date? the date</xqdoc:param>
+    <xqdoc:return>xs:date?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:last-day-of-year</xqdoc:name>
+   <xqdoc:signature>functx:last-day-of-year($date as xs:anyAtomicType?) as xs:date?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The last day of the month of a date</xqdoc:description>
+    <xqdoc:param>$date? the date</xqdoc:param>
+    <xqdoc:return>xs:date?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:last-node</xqdoc:name>
+   <xqdoc:signature>functx:last-node($nodes as node()*) as node()?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The XML node in a sequence that is last in document order</xqdoc:description>
+    <xqdoc:param>$nodes* the sequence of nodes</xqdoc:param>
+    <xqdoc:return>node()?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:leaf-elements</xqdoc:name>
+   <xqdoc:signature>functx:leaf-elements($root as node()?) as element()*</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>All XML elements that don't have any child elements</xqdoc:description>
+    <xqdoc:param>$root? the root</xqdoc:param>
+    <xqdoc:return>element()*</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:left-trim</xqdoc:name>
+   <xqdoc:signature>functx:left-trim($arg as xs:string?) as xs:string</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Trims leading whitespace</xqdoc:description>
+    <xqdoc:param>$arg? the string to trim</xqdoc:param>
+    <xqdoc:return>xs:string</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:line-count</xqdoc:name>
+   <xqdoc:signature>functx:line-count($arg as xs:string?) as xs:integer</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The number of lines</xqdoc:description>
+    <xqdoc:param>$arg? the string to test</xqdoc:param>
+    <xqdoc:return>xs:integer</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:lines</xqdoc:name>
+   <xqdoc:signature>functx:lines($arg as xs:string?) as xs:string*</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Split a string into separate lines</xqdoc:description>
+    <xqdoc:param>$arg? the string to split</xqdoc:param>
+    <xqdoc:return>xs:string*</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:max-depth</xqdoc:name>
+   <xqdoc:signature>functx:max-depth($root as node()?) as xs:integer?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The maximum depth of elements in an XML tree</xqdoc:description>
+    <xqdoc:param>$root? the root to start from</xqdoc:param>
+    <xqdoc:return>xs:integer?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:max-determine-type</xqdoc:name>
+   <xqdoc:signature>functx:max-determine-type($seq as xs:anyAtomicType*) as xs:anyAtomicType?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The maximum value in a sequence, figuring out its type (numeric or string)</xqdoc:description>
+    <xqdoc:param>$seq* the sequence of values to test</xqdoc:param>
+    <xqdoc:return>xs:anyAtomicType?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:max-line-length</xqdoc:name>
+   <xqdoc:signature>functx:max-line-length($arg as xs:string?) as xs:integer</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The maximum line length</xqdoc:description>
+    <xqdoc:param>$arg? the string to test</xqdoc:param>
+    <xqdoc:return>xs:integer</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:max-node</xqdoc:name>
+   <xqdoc:signature>functx:max-node($nodes as node()*) as node()*</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The XML node whose typed value is the maximum</xqdoc:description>
+    <xqdoc:param>$nodes* the sequence of nodes to test</xqdoc:param>
+    <xqdoc:return>node()*</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:max-string</xqdoc:name>
+   <xqdoc:signature>functx:max-string($strings as xs:anyAtomicType*) as xs:string?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The maximum of a sequence of values, treating them like strings</xqdoc:description>
+    <xqdoc:param>$strings* the sequence of values</xqdoc:param>
+    <xqdoc:return>xs:string?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:min-determine-type</xqdoc:name>
+   <xqdoc:signature>functx:min-determine-type($seq as xs:anyAtomicType*) as xs:anyAtomicType?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The minimum value in a sequence, figuring out its type (numeric or string)</xqdoc:description>
+    <xqdoc:param>$seq* the sequence of values to test</xqdoc:param>
+    <xqdoc:return>xs:anyAtomicType?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:min-node</xqdoc:name>
+   <xqdoc:signature>functx:min-node($nodes as node()*) as node()*</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The XML node whose typed value is the minimum</xqdoc:description>
+    <xqdoc:param>$nodes* the sequence of nodes to test</xqdoc:param>
+    <xqdoc:return>node()*</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:min-non-empty-string</xqdoc:name>
+   <xqdoc:signature>functx:min-non-empty-string($strings as xs:string*) as xs:string?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The minimum of a sequence of strings, ignoring "empty" values</xqdoc:description>
+    <xqdoc:param>$strings* the sequence of strings to search</xqdoc:param>
+    <xqdoc:return>xs:string?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:min-string</xqdoc:name>
+   <xqdoc:signature>functx:min-string($strings as xs:anyAtomicType*) as xs:string?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The minimum of a sequence of values, treating them like strings</xqdoc:description>
+    <xqdoc:param>$strings* the sequence of strings</xqdoc:param>
+    <xqdoc:return>xs:string?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:mmddyyyy-to-date</xqdoc:name>
+   <xqdoc:signature>functx:mmddyyyy-to-date($dateString as xs:string?) as xs:date?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Converts a string with format MMDDYYYY (with any delimiters) to a date</xqdoc:description>
+    <xqdoc:param>$dateString? the MMDDYYYY string</xqdoc:param>
+    <xqdoc:return>xs:date?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:month-abbrev-en</xqdoc:name>
+   <xqdoc:signature>functx:month-abbrev-en($date as xs:anyAtomicType?) as xs:string?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The month of a date as an abbreviated word (Jan, Feb, etc.)</xqdoc:description>
+    <xqdoc:param>$date? the date</xqdoc:param>
+    <xqdoc:return>xs:string?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:month-name-en</xqdoc:name>
+   <xqdoc:signature>functx:month-name-en($date as xs:anyAtomicType?) as xs:string?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The month of a date as a word (January, February, etc.)</xqdoc:description>
+    <xqdoc:param>$date? the date</xqdoc:param>
+    <xqdoc:return>xs:string?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:name-test</xqdoc:name>
+   <xqdoc:signature>functx:name-test($testname as xs:string?, $names as xs:string*) as xs:boolean</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Whether a name matches a list of names or name wildcards</xqdoc:description>
+    <xqdoc:param>$testname? the name to test</xqdoc:param>
+    <xqdoc:param>$names* the list of names or name wildcards</xqdoc:param>
+    <xqdoc:return>xs:boolean</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:namespaces-in-use</xqdoc:name>
+   <xqdoc:signature>functx:namespaces-in-use($root as node()?) as xs:anyURI*</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>A list of namespaces used in element/attribute names in an XML fragment</xqdoc:description>
+    <xqdoc:param>$root? the root node to start from</xqdoc:param>
+    <xqdoc:return>xs:anyURI*</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:next-day</xqdoc:name>
+   <xqdoc:signature>functx:next-day($date as xs:anyAtomicType?) as xs:date?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The next day</xqdoc:description>
+    <xqdoc:param>$date? the date</xqdoc:param>
+    <xqdoc:return>xs:date?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:node-kind</xqdoc:name>
+   <xqdoc:signature>functx:node-kind($nodes as node()*) as xs:string*</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The XML node kind (element, attribute, text, etc.)</xqdoc:description>
+    <xqdoc:param>$nodes* the node(s) whose kind you want to determine</xqdoc:param>
+    <xqdoc:return>xs:string*</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:non-distinct-values</xqdoc:name>
+   <xqdoc:signature>functx:non-distinct-values($seq as xs:anyAtomicType*) as xs:anyAtomicType*</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Returns any values that appear more than once in a sequence</xqdoc:description>
+    <xqdoc:param>$seq* the sequence of values</xqdoc:param>
+    <xqdoc:return>xs:anyAtomicType*</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:number-of-matches</xqdoc:name>
+   <xqdoc:signature>functx:number-of-matches($arg as xs:string?, $pattern as xs:string) as xs:integer</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The number of regions that match a pattern</xqdoc:description>
+    <xqdoc:param>$arg? the string to test</xqdoc:param>
+    <xqdoc:param>$pattern the regular expression</xqdoc:param>
+    <xqdoc:return>xs:integer</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:open-ref-document</xqdoc:name>
+   <xqdoc:signature>functx:open-ref-document($refNode as node()) as document-node()</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Resolves a relative URI and references it, returning an XML document</xqdoc:description>
+    <xqdoc:param>$refNode a node whose value is a relative URI reference</xqdoc:param>
+    <xqdoc:return>document-node()</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:ordinal-number-en</xqdoc:name>
+   <xqdoc:signature>functx:ordinal-number-en($num as xs:integer?) as xs:string</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Reformats a number as an ordinal number, e.g. 1st, 2nd, 3rd.</xqdoc:description>
+    <xqdoc:param>$num? the number</xqdoc:param>
+    <xqdoc:return>xs:string</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:pad-integer-to-length</xqdoc:name>
+   <xqdoc:signature>functx:pad-integer-to-length($integerToPad as xs:anyAtomicType?, $length as xs:integer) as xs:string</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Pads an integer to a desired length by adding leading zeros</xqdoc:description>
+    <xqdoc:param>$integerToPad? the integer to pad</xqdoc:param>
+    <xqdoc:param>$length the desired length</xqdoc:param>
+    <xqdoc:return>xs:string</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:pad-string-to-length</xqdoc:name>
+   <xqdoc:signature>functx:pad-string-to-length($stringToPad as xs:string?, $padChar as xs:string, $length as xs:integer) as xs:string</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Pads a string to a desired length</xqdoc:description>
+    <xqdoc:param>$stringToPad? the string to pad</xqdoc:param>
+    <xqdoc:param>$padChar the character(s) to use as padding</xqdoc:param>
+    <xqdoc:param>$length the desired length</xqdoc:param>
+    <xqdoc:return>xs:string</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:path-to-node</xqdoc:name>
+   <xqdoc:signature>functx:path-to-node($nodes as node()*) as xs:string*</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>A path to an XML node (or sequence of nodes)</xqdoc:description>
+    <xqdoc:param>$nodes* the node sequence</xqdoc:param>
+    <xqdoc:return>xs:string*</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:path-to-node-with-pos</xqdoc:name>
+   <xqdoc:signature>functx:path-to-node-with-pos($node as node()?) as xs:string</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>A unique path to an XML node (or sequence of nodes)</xqdoc:description>
+    <xqdoc:param>$node? the node sequence</xqdoc:param>
+    <xqdoc:return>xs:string</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:precedes-not-ancestor</xqdoc:name>
+   <xqdoc:signature>functx:precedes-not-ancestor($a as node()?, $b as node()?) as xs:boolean</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Whether an XML node precedes another without being its ancestor</xqdoc:description>
+    <xqdoc:param>$a? the first node</xqdoc:param>
+    <xqdoc:param>$b? the second node</xqdoc:param>
+    <xqdoc:return>xs:boolean</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:previous-day</xqdoc:name>
+   <xqdoc:signature>functx:previous-day($date as xs:anyAtomicType?) as xs:date?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The previous day</xqdoc:description>
+    <xqdoc:param>$date? the date</xqdoc:param>
+    <xqdoc:return>xs:date?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:remove-attributes</xqdoc:name>
+   <xqdoc:signature>functx:remove-attributes($elements as element()*, $names as xs:string*) as element()</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Removes attributes from an XML element, based on name</xqdoc:description>
+    <xqdoc:param>$elements* the element(s) from which to remove the attributes</xqdoc:param>
+    <xqdoc:param>$names* the names of the attributes to remove, or * for all attributes</xqdoc:param>
+    <xqdoc:return>element()</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:remove-attributes-deep</xqdoc:name>
+   <xqdoc:signature>functx:remove-attributes-deep($nodes as node()*, $names as xs:string*) as node()*</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Removes attributes from an XML fragment, based on name</xqdoc:description>
+    <xqdoc:param>$nodes* the root(s) to start from</xqdoc:param>
+    <xqdoc:param>$names* the names of the attributes to remove, or * for all attributes</xqdoc:param>
+    <xqdoc:return>node()*</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:remove-elements</xqdoc:name>
+   <xqdoc:signature>functx:remove-elements($elements as element()*, $names as xs:string*) as element()*</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Removes child elements from an XML node, based on name</xqdoc:description>
+    <xqdoc:param>$elements* the element(s) from which you wish to remove the children</xqdoc:param>
+    <xqdoc:param>$names* the names of the child elements to remove</xqdoc:param>
+    <xqdoc:return>element()*</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:remove-elements-deep</xqdoc:name>
+   <xqdoc:signature>functx:remove-elements-deep($nodes as node()*, $names as xs:string*) as node()*</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Removes descendant elements from an XML node, based on name</xqdoc:description>
+    <xqdoc:param>$nodes* root(s) to start from</xqdoc:param>
+    <xqdoc:param>$names* the names of the elements to remove</xqdoc:param>
+    <xqdoc:return>node()*</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:remove-elements-not-contents</xqdoc:name>
+   <xqdoc:signature>functx:remove-elements-not-contents($nodes as node()*, $names as xs:string*) as node()*</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Removes descendant XML elements but keeps their content</xqdoc:description>
+    <xqdoc:param>$nodes* the root(s) to start from</xqdoc:param>
+    <xqdoc:param>$names* the names of the elements to remove</xqdoc:param>
+    <xqdoc:return>node()*</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:repeat-string</xqdoc:name>
+   <xqdoc:signature>functx:repeat-string($stringToRepeat as xs:string?, $count as xs:integer) as xs:string</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Repeats a string a given number of times</xqdoc:description>
+    <xqdoc:param>$stringToRepeat? the string to repeat</xqdoc:param>
+    <xqdoc:param>$count the desired number of copies</xqdoc:param>
+    <xqdoc:return>xs:string</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:replace-beginning</xqdoc:name>
+   <xqdoc:signature>functx:replace-beginning($arg as xs:string?, $pattern as xs:string, $replacement as xs:string) as xs:string</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Replaces the beginning of a string, up to a matched pattern</xqdoc:description>
+    <xqdoc:param>$arg? the entire string to change</xqdoc:param>
+    <xqdoc:param>$pattern the pattern of characters to replace up to</xqdoc:param>
+    <xqdoc:param>$replacement the replacement string</xqdoc:param>
+    <xqdoc:return>xs:string</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:replace-element-values</xqdoc:name>
+   <xqdoc:signature>functx:replace-element-values($elements as element()*, $values as xs:anyAtomicType*) as element()*</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Updates the content of one or more elements</xqdoc:description>
+    <xqdoc:param>$elements* the elements whose content you wish to replace</xqdoc:param>
+    <xqdoc:param>$values* the replacement values</xqdoc:param>
+    <xqdoc:return>element()*</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:replace-first</xqdoc:name>
+   <xqdoc:signature>functx:replace-first($arg as xs:string?, $pattern as xs:string, $replacement as xs:string) as xs:string</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Replaces the first match of a pattern</xqdoc:description>
+    <xqdoc:param>$arg? the entire string to change</xqdoc:param>
+    <xqdoc:param>$pattern the pattern of characters to replace</xqdoc:param>
+    <xqdoc:param>$replacement the replacement string</xqdoc:param>
+    <xqdoc:return>xs:string</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:replace-multi</xqdoc:name>
+   <xqdoc:signature>functx:replace-multi($arg as xs:string?, $changeFrom as xs:string*, $changeTo as xs:string*) as xs:string?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Performs multiple replacements, using pairs of replace parameters</xqdoc:description>
+    <xqdoc:param>$arg? the string to manipulate</xqdoc:param>
+    <xqdoc:param>$changeFrom* the sequence of strings or patterns to change from</xqdoc:param>
+    <xqdoc:param>$changeTo* the sequence of strings to change to</xqdoc:param>
+    <xqdoc:return>xs:string?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:reverse-string</xqdoc:name>
+   <xqdoc:signature>functx:reverse-string($arg as xs:string?) as xs:string</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Reverses the order of characters</xqdoc:description>
+    <xqdoc:param>$arg? the string to reverse</xqdoc:param>
+    <xqdoc:return>xs:string</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:right-trim</xqdoc:name>
+   <xqdoc:signature>functx:right-trim($arg as xs:string?) as xs:string</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Trims trailing whitespace</xqdoc:description>
+    <xqdoc:param>$arg? the string to trim</xqdoc:param>
+    <xqdoc:return>xs:string</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:scheme-from-uri</xqdoc:name>
+   <xqdoc:signature>functx:scheme-from-uri($uri as xs:string?) as xs:string?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Returns the scheme from a URI</xqdoc:description>
+    <xqdoc:param>$uri? the URI</xqdoc:param>
+    <xqdoc:return>xs:string?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:sequence-deep-equal</xqdoc:name>
+   <xqdoc:signature>functx:sequence-deep-equal($seq1 as item()*, $seq2 as item()*) as xs:boolean</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Whether two sequences have the same XML node content and/or values</xqdoc:description>
+    <xqdoc:param>$seq1* the first sequence</xqdoc:param>
+    <xqdoc:param>$seq2* the second sequence</xqdoc:param>
+    <xqdoc:return>xs:boolean</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:sequence-node-equal</xqdoc:name>
+   <xqdoc:signature>functx:sequence-node-equal($seq1 as node()*, $seq2 as node()*) as xs:boolean</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Whether two sequences contain the same XML nodes, in the same order</xqdoc:description>
+    <xqdoc:param>$seq1* the first sequence of nodes</xqdoc:param>
+    <xqdoc:param>$seq2* the second sequence of nodes</xqdoc:param>
+    <xqdoc:return>xs:boolean</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:sequence-node-equal-any-order</xqdoc:name>
+   <xqdoc:signature>functx:sequence-node-equal-any-order($seq1 as node()*, $seq2 as node()*) as xs:boolean</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Whether two sequences contain the same XML nodes, regardless of order</xqdoc:description>
+    <xqdoc:param>$seq1* the first sequence of nodes</xqdoc:param>
+    <xqdoc:param>$seq2* the second sequence of nodes</xqdoc:param>
+    <xqdoc:return>xs:boolean</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:sequence-type</xqdoc:name>
+   <xqdoc:signature>functx:sequence-type($items as item()*) as xs:string</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The sequence type that represents a sequence of nodes or values</xqdoc:description>
+    <xqdoc:param>$items* the items whose sequence type you want to determine</xqdoc:param>
+    <xqdoc:return>xs:string</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:siblings</xqdoc:name>
+   <xqdoc:signature>functx:siblings($node as node()?) as node()*</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The siblings of an XML node</xqdoc:description>
+    <xqdoc:param>$node? the node</xqdoc:param>
+    <xqdoc:return>node()*</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:siblings-same-name</xqdoc:name>
+   <xqdoc:signature>functx:siblings-same-name($element as element()?) as element()*</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The siblings of an XML element that have the same name</xqdoc:description>
+    <xqdoc:param>$element? the node</xqdoc:param>
+    <xqdoc:return>element()*</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:sort</xqdoc:name>
+   <xqdoc:signature>functx:sort($seq as item()*) as item()*</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Sorts a sequence of values or nodes</xqdoc:description>
+    <xqdoc:param>$seq* the sequence to sort</xqdoc:param>
+    <xqdoc:return>item()*</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:sort-as-numeric</xqdoc:name>
+   <xqdoc:signature>functx:sort-as-numeric($seq as item()*) as item()*</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Sorts a sequence of numeric values or nodes</xqdoc:description>
+    <xqdoc:param>$seq* the sequence to sort</xqdoc:param>
+    <xqdoc:return>item()*</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:sort-case-insensitive</xqdoc:name>
+   <xqdoc:signature>functx:sort-case-insensitive($seq as item()*) as item()*</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Sorts a sequence of values or nodes regardless of capitalization</xqdoc:description>
+    <xqdoc:param>$seq* the sequence to sort</xqdoc:param>
+    <xqdoc:return>item()*</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:sort-document-order</xqdoc:name>
+   <xqdoc:signature>functx:sort-document-order($seq as node()*) as node()*</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Sorts a sequence of nodes in document order</xqdoc:description>
+    <xqdoc:param>$seq* the sequence to sort</xqdoc:param>
+    <xqdoc:return>node()*</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:substring-after-if-contains</xqdoc:name>
+   <xqdoc:signature>functx:substring-after-if-contains($arg as xs:string?, $delim as xs:string) as xs:string?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Performs substring-after, returning the entire string if it does not contain the delimiter</xqdoc:description>
+    <xqdoc:param>$arg? the string to substring</xqdoc:param>
+    <xqdoc:param>$delim the delimiter</xqdoc:param>
+    <xqdoc:return>xs:string?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:substring-after-last</xqdoc:name>
+   <xqdoc:signature>functx:substring-after-last($arg as xs:string?, $delim as xs:string) as xs:string</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The substring after the last occurrence of a delimiter</xqdoc:description>
+    <xqdoc:param>$arg? the string to substring</xqdoc:param>
+    <xqdoc:param>$delim the delimiter</xqdoc:param>
+    <xqdoc:return>xs:string</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:substring-after-last-match</xqdoc:name>
+   <xqdoc:signature>functx:substring-after-last-match($arg as xs:string?, $regex as xs:string) as xs:string</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The substring after the last text that matches a regex</xqdoc:description>
+    <xqdoc:param>$arg? the string to substring</xqdoc:param>
+    <xqdoc:param>$regex the regular expression</xqdoc:param>
+    <xqdoc:return>xs:string</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:substring-after-match</xqdoc:name>
+   <xqdoc:signature>functx:substring-after-match($arg as xs:string?, $regex as xs:string) as xs:string?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The substring after the first text that matches a regex</xqdoc:description>
+    <xqdoc:param>$arg? the string to substring</xqdoc:param>
+    <xqdoc:param>$regex the regular expression</xqdoc:param>
+    <xqdoc:return>xs:string?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:substring-before-if-contains</xqdoc:name>
+   <xqdoc:signature>functx:substring-before-if-contains($arg as xs:string?, $delim as xs:string) as xs:string?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Performs substring-before, returning the entire string if it does not contain the delimiter</xqdoc:description>
+    <xqdoc:param>$arg? the string to substring</xqdoc:param>
+    <xqdoc:param>$delim the delimiter</xqdoc:param>
+    <xqdoc:return>xs:string?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:substring-before-last</xqdoc:name>
+   <xqdoc:signature>functx:substring-before-last($arg as xs:string?, $delim as xs:string) as xs:string</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The substring before the last occurrence of a delimiter</xqdoc:description>
+    <xqdoc:param>$arg? the string to substring</xqdoc:param>
+    <xqdoc:param>$delim the delimiter</xqdoc:param>
+    <xqdoc:return>xs:string</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:substring-before-last-match</xqdoc:name>
+   <xqdoc:signature>functx:substring-before-last-match($arg as xs:string?, $regex as xs:string) as xs:string?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The substring after the first text that matches a regex</xqdoc:description>
+    <xqdoc:param>$arg? the string to substring</xqdoc:param>
+    <xqdoc:param>$regex the regular expression</xqdoc:param>
+    <xqdoc:return>xs:string?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:substring-before-match</xqdoc:name>
+   <xqdoc:signature>functx:substring-before-match($arg as xs:string?, $regex as xs:string) as xs:string</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The substring before the last text that matches a regex</xqdoc:description>
+    <xqdoc:param>$arg? the string to substring</xqdoc:param>
+    <xqdoc:param>$regex the regular expression</xqdoc:param>
+    <xqdoc:return>xs:string</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:time</xqdoc:name>
+   <xqdoc:signature>functx:time($hour as xs:anyAtomicType, $minute as xs:anyAtomicType, $second as xs:anyAtomicType) as xs:time</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Construct a time from an hour, minute and second</xqdoc:description>
+    <xqdoc:param>$hour the hour</xqdoc:param>
+    <xqdoc:param>$minute the minute</xqdoc:param>
+    <xqdoc:param>$second the second</xqdoc:param>
+    <xqdoc:return>xs:time</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:timezone-from-duration</xqdoc:name>
+   <xqdoc:signature>functx:timezone-from-duration($duration as xs:dayTimeDuration) as xs:string</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Converts an xs:dayTimeDuration into a timezone like "-05:00" or "Z"</xqdoc:description>
+    <xqdoc:param>$duration the duration</xqdoc:param>
+    <xqdoc:return>xs:string</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:total-days-from-duration</xqdoc:name>
+   <xqdoc:signature>functx:total-days-from-duration($duration as xs:dayTimeDuration?) as xs:decimal?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The total number of days in a dayTimeDuration</xqdoc:description>
+    <xqdoc:param>$duration? the duration</xqdoc:param>
+    <xqdoc:return>xs:decimal?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:total-hours-from-duration</xqdoc:name>
+   <xqdoc:signature>functx:total-hours-from-duration($duration as xs:dayTimeDuration?) as xs:decimal?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The total number of hours in a dayTimeDuration</xqdoc:description>
+    <xqdoc:param>$duration? the duration</xqdoc:param>
+    <xqdoc:return>xs:decimal?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:total-minutes-from-duration</xqdoc:name>
+   <xqdoc:signature>functx:total-minutes-from-duration($duration as xs:dayTimeDuration?) as xs:decimal?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The total number of minutes in a dayTimeDuration</xqdoc:description>
+    <xqdoc:param>$duration? the duration</xqdoc:param>
+    <xqdoc:return>xs:decimal?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:total-months-from-duration</xqdoc:name>
+   <xqdoc:signature>functx:total-months-from-duration($duration as xs:yearMonthDuration?) as xs:decimal?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The total number of months in a yearMonthDuration</xqdoc:description>
+    <xqdoc:param>$duration? the duration</xqdoc:param>
+    <xqdoc:return>xs:decimal?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:total-seconds-from-duration</xqdoc:name>
+   <xqdoc:signature>functx:total-seconds-from-duration($duration as xs:dayTimeDuration?) as xs:decimal?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The total number of seconds in a dayTimeDuration</xqdoc:description>
+    <xqdoc:param>$duration? the duration</xqdoc:param>
+    <xqdoc:return>xs:decimal?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:total-years-from-duration</xqdoc:name>
+   <xqdoc:signature>functx:total-years-from-duration($duration as xs:yearMonthDuration?) as xs:decimal?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The total number of years in a yearMonthDuration</xqdoc:description>
+    <xqdoc:param>$duration? the duration</xqdoc:param>
+    <xqdoc:return>xs:decimal?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:trim</xqdoc:name>
+   <xqdoc:signature>functx:trim($arg as xs:string?) as xs:string</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Trims leading and trailing whitespace</xqdoc:description>
+    <xqdoc:param>$arg? the string to trim</xqdoc:param>
+    <xqdoc:return>xs:string</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:update-attributes</xqdoc:name>
+   <xqdoc:signature>functx:update-attributes($elements as element()*, $attrNames as xs:QName*, $attrValues as xs:anyAtomicType*) as element()?</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Updates the attribute value of an XML element</xqdoc:description>
+    <xqdoc:param>$elements* the element(s) for which you wish to update the attribute</xqdoc:param>
+    <xqdoc:param>$attrNames* the name(s) of the attribute(s) to add</xqdoc:param>
+    <xqdoc:param>$attrValues* the value(s) of the attribute(s) to add</xqdoc:param>
+    <xqdoc:return>element()?</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:value-except</xqdoc:name>
+   <xqdoc:signature>functx:value-except($arg1 as xs:anyAtomicType*, $arg2 as xs:anyAtomicType*) as xs:anyAtomicType*</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The values in one sequence that aren't in another sequence</xqdoc:description>
+    <xqdoc:param>$arg1* the first sequence</xqdoc:param>
+    <xqdoc:param>$arg2* the second sequence</xqdoc:param>
+    <xqdoc:return>xs:anyAtomicType*</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:value-intersect</xqdoc:name>
+   <xqdoc:signature>functx:value-intersect($arg1 as xs:anyAtomicType*, $arg2 as xs:anyAtomicType*) as xs:anyAtomicType*</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The intersection of two sequences of values</xqdoc:description>
+    <xqdoc:param>$arg1* the first sequence</xqdoc:param>
+    <xqdoc:param>$arg2* the second sequence</xqdoc:param>
+    <xqdoc:return>xs:anyAtomicType*</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:value-union</xqdoc:name>
+   <xqdoc:signature>functx:value-union($arg1 as xs:anyAtomicType*, $arg2 as xs:anyAtomicType*) as xs:anyAtomicType*</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The union of two sequences of values</xqdoc:description>
+    <xqdoc:param>$arg1* the first sequence</xqdoc:param>
+    <xqdoc:param>$arg2* the second sequence</xqdoc:param>
+    <xqdoc:return>xs:anyAtomicType*</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:word-count</xqdoc:name>
+   <xqdoc:signature>functx:word-count($arg as xs:string?) as xs:integer</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>The number of words</xqdoc:description>
+    <xqdoc:param>$arg? the string to measure</xqdoc:param>
+    <xqdoc:return>xs:integer</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:words-to-camel-case</xqdoc:name>
+   <xqdoc:signature>functx:words-to-camel-case($arg as xs:string?) as xs:string</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Turns a string of words into camelCase</xqdoc:description>
+    <xqdoc:param>$arg? the string to modify</xqdoc:param>
+    <xqdoc:return>xs:string</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:wrap-values-in-elements</xqdoc:name>
+   <xqdoc:signature>functx:wrap-values-in-elements($values as xs:anyAtomicType*, $elementName as xs:QName) as element()*</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Wraps a sequence of atomic values in XML elements</xqdoc:description>
+    <xqdoc:param>$values* the values to wrap in elements</xqdoc:param>
+    <xqdoc:param>$elementName the name of the elements to construct</xqdoc:param>
+    <xqdoc:return>element()*</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+  <xqdoc:function>
+   <xqdoc:name>functx:yearMonthDuration</xqdoc:name>
+   <xqdoc:signature>functx:yearMonthDuration($years as xs:decimal?, $months as xs:integer?) as xs:yearMonthDuration</xqdoc:signature>
+   <xqdoc:comment>
+    <xqdoc:description>Construct a yearMonthDuration from a number of years and months</xqdoc:description>
+    <xqdoc:param>$years? the number of years</xqdoc:param>
+    <xqdoc:param>$months? the number of months</xqdoc:param>
+    <xqdoc:return>xs:yearMonthDuration</xqdoc:return>
+   </xqdoc:comment>
+  </xqdoc:function>
+ </xqdoc:functions>
+</xqdoc:xqdoc>

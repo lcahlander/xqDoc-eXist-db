@@ -1,0 +1,126 @@
+<xqdoc:xqdoc xmlns:xqdoc="http://www.xqdoc.org/1.0">
+    <xqdoc:control>
+        <xqdoc:date>2019-05-14T12:08:24.519-04:00</xqdoc:date>
+        <xqdoc:location/>
+    </xqdoc:control>
+    <xqdoc:module type="library">
+        <xqdoc:uri>http://exist-db.org/xquery/kwic</xqdoc:uri>
+        <xqdoc:name>kwic</xqdoc:name>
+        <xqdoc:comment>
+            <xqdoc:description>KWIC module: formats query results to display &lt;em&gt;keywords in context&lt;/em&gt; (KWIC). A configurable
+amount of text is displayed to the left and right of a matching keyword (or phrase).
+
+The module works with all indexes that support match highlighting (matches are tagged
+with an &amp;lt;exist:match&amp;gt; element or exist:matches attribute). This includes the old 
+full text index, the new Lucene-based full text index, as well as the NGram index.
+
+The &lt;b&gt;kwic:summarize()&lt;/b&gt; function represents the main entry point into the module.
+To have more control over the text extraction context, you can also call 
+&lt;b&gt;kwic:get-summary()&lt;/b&gt; instead. For example, the following snippet will only print the
+first match within a given set of context nodes ($ancestor):
+
+&lt;pre&gt;
+let $matches := kwic:get-matches($hit)&lt;br/&gt;
+for $ancestor in $matches/ancestor::para | $matches/ancestor::title | $matches/ancestor::td&lt;br/&gt;
+return&lt;br/&gt;
+kwic:get-summary($ancestor, ($ancestor//exist:match, $ancestor//*[</xqdoc:description>
+        </xqdoc:comment>
+    </xqdoc:module>
+    <xqdoc:functions>
+        <xqdoc:function>
+            <xqdoc:name>kwic:expand</xqdoc:name>
+            <xqdoc:signature>kwic:expand($hit as element()) as element()</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description>Expand the element in $hit. Creates an in-memory copy of the element and marks
+all element matches with an exist:match tag and attribute matches with an 
+exist:matches tag, which will be used by all other functions in
+this module. You need to call kwic:expand before kwic:get-summary. 
+kwic:summarize will call it automatically.</xqdoc:description>
+                <xqdoc:param>$hit </xqdoc:param>
+                <xqdoc:return>element()</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+        <xqdoc:function>
+            <xqdoc:name>kwic:get-matches</xqdoc:name>
+            <xqdoc:signature>kwic:get-matches($hit as element()) as element()*</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description>Return all matches within the specified element, $hit. Matches are returned as
+exist:match elements or elements with exist:matches attribute. The returned nodes 
+are part of a new document whose root element is a copy of the specified $hit element.</xqdoc:description>
+                <xqdoc:param>$hit an arbitrary XML element which has been selected by one of the full text
+operations or an ngram search.</xqdoc:param>
+                <xqdoc:return>element()*</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+        <xqdoc:function>
+            <xqdoc:name>kwic:get-summary</xqdoc:name>
+            <xqdoc:signature>kwic:get-summary($root as node(), $node as element(), $config as element()?) as element()</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description/>
+                <xqdoc:param>$root </xqdoc:param>
+                <xqdoc:param>$node </xqdoc:param>
+                <xqdoc:param>$config? </xqdoc:param>
+                <xqdoc:return>element()</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+        <xqdoc:function>
+            <xqdoc:name>kwic:get-summary</xqdoc:name>
+            <xqdoc:signature>kwic:get-summary($root as node(), $node as element(), $config as element()?, $callback as function(*)?) as element()</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description>Print a summary of the match in $node. Output a predefined amount of text to
+the left and the right of the match.</xqdoc:description>
+                <xqdoc:param>$root root element which should be used as context for the match. It defines the
+boundaries for the text extraction. Text will be taken from this context.</xqdoc:param>
+                <xqdoc:param>$node the exist:match element or the element with</xqdoc:param>
+                <xqdoc:param>$config? configuration element which determines the behaviour of the function</xqdoc:param>
+                <xqdoc:param>$callback? (optional) reference to a callback function which will be called
+once for every text node before it is appended to the displayed text. The function
+should accept 2 parameters: 1) a single text node, 2) a string indicating the
+current direction in which text is appended, i.e. $kwic:MODE_BEFORE or $kwic:MODE_AFTER.
+The function may return the empty sequence if the current node should be ignore
+(e.g. if it belongs to a "footnote" which should not be displayed). Otherwise it should
+return a single string.</xqdoc:param>
+                <xqdoc:return>element()</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+        <xqdoc:function>
+            <xqdoc:name>kwic:summarize</xqdoc:name>
+            <xqdoc:signature>kwic:summarize($hit as element(), $config as element()?) as element()*</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description/>
+                <xqdoc:param>$hit </xqdoc:param>
+                <xqdoc:param>$config? </xqdoc:param>
+                <xqdoc:return>element()*</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+        <xqdoc:function>
+            <xqdoc:name>kwic:summarize</xqdoc:name>
+            <xqdoc:signature>kwic:summarize($hit as element(), $config as element()?, $callback as function(*)?) as element()*</xqdoc:signature>
+            <xqdoc:comment>
+                <xqdoc:description>Main function of the KWIC module: takes the passed element and returns an 
+XHTML fragment containing a chunk of text before and after the first full text
+match in the node.
+
+The optional config parameter is used to configure the behaviour of the function:
+
+&amp;lt;config width="character width" table="yes|no" link="URL to which the match is linked"/&amp;gt;
+
+By default, kwic:summarize returns an XHTML fragment with the following structure:
+
+&amp;lt;p xmlns="http://www.w3.org/1999/xhtml"&amp;gt;
+&amp;lt;span class="previous"&amp;gt;Text before match&amp;lt;/span&amp;gt;
+&amp;lt;a href="passed URL if any" class="hi"&amp;gt;The highlighted term&amp;lt;/a&amp;gt;
+&amp;lt;span class="following"&amp;gt;Text after match&amp;lt;/span&amp;gt;
+&amp;lt;/p&amp;gt;
+
+If table=yes is passed with the config element, a tr table row will be returned instead
+of a span (using the same class names).</xqdoc:description>
+                <xqdoc:param>$hit an arbitrary XML element which has been selected by one of the full text
+operations or an ngram search.</xqdoc:param>
+                <xqdoc:param>$config? configuration element to configure the behaviour of the function</xqdoc:param>
+                <xqdoc:param>$callback? </xqdoc:param>
+                <xqdoc:return>element()*</xqdoc:return>
+            </xqdoc:comment>
+        </xqdoc:function>
+    </xqdoc:functions>
+</xqdoc:xqdoc>
