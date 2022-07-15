@@ -19,7 +19,7 @@
     "@polymer/paper-toggle-button": "^3.0.1",
     "@polymer/paper-toolbar": "^3.0.1",
     "@polymer/polymer": "^3.0.0",
-    "@vaadin/vaadin-grid": "^5.2.5"
+    "@vaadin/vaadin-grid": "^5.9.6"
   },
   "devDependencies": {
     "@webcomponents/webcomponentsjs": "^2.0.0",
